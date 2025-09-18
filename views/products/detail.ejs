@@ -1,0 +1,24 @@
+<%- include('../partials/header', { title: 'Product Detail', user: user }) %>
+
+<div class="container mt-5">
+  <h2 class="mb-4"><%= product.name %></h2>
+
+  <ul class="list-group mb-3">
+    <li class="list-group-item"><strong>Price:</strong> <%= product.price %></li>
+    <li class="list-group-item"><strong>Quantity:</strong> <%= product.quantity %></li>
+    <li class="list-group-item"><strong>Supplier:</strong> <%= product.supplierId ? product.supplierId.name : 'N/A' %></li>
+  </ul>
+
+  <% if (user) { %>
+  <div class="mb-3">
+    <a class="btn btn-warning me-2" href="/products/edit/<%= product._id %>">Edit</a>
+    <form action="/products/delete/<%= product._id %>" method="POST" style="display:inline;">
+      <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+  </div>
+  <% } %>
+
+  <a href="/products" class="btn btn-secondary">Back to Products</a>
+</div>
+
+<%- include('../partials/footer') %>

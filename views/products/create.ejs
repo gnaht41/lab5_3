@@ -1,0 +1,30 @@
+<%- include('../partials/header', { title: 'Create Product', user: user }) %>
+
+<h2 class="mb-3">Create Product</h2>
+
+<form action="/products/create" method="POST" class="w-50">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" name="name" id="name" required>
+  </div>
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input type="number" class="form-control" name="price" id="price" required>
+  </div>
+  <div class="mb-3">
+    <label for="quantity" class="form-label">Quantity</label>
+    <input type="number" class="form-control" name="quantity" id="quantity" required>
+  </div>
+  <div class="mb-3">
+    <label for="supplierId" class="form-label">Supplier</label>
+    <select name="supplierId" class="form-select" required>
+      <% suppliers.forEach(s => { %>
+      <option value="<%= s._id %>"><%= s.name %></option>
+      <% }) %>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-success">Create</button>
+  <a href="/products" class="btn btn-secondary">Cancel</a>
+</form>
+
+<%- include('../partials/footer') %>

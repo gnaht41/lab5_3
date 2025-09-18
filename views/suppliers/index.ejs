@@ -1,0 +1,34 @@
+<%- include('../partials/header', { title: 'Suppliers' }) %>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Suppliers</h2>
+  <a class="btn btn-primary" href="/suppliers/create">Add Supplier</a>
+</div>
+
+<table class="table table-striped table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Phone</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% suppliers.forEach(s => { %>
+    <tr>
+      <td><%= s.name %></td>
+      <td><%= s.address %></td>
+      <td><%= s.phone %></td>
+      <td>
+        <a class="btn btn-sm btn-warning me-2" href="/suppliers/edit/<%= s._id %>">Edit</a>
+        <form action="/suppliers/delete/<%= s._id %>" method="POST" style="display:inline;">
+          <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>
